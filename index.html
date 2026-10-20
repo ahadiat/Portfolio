@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sudirman Ahadiat | Financial Analyst & Tech Developer</title>
-     <link rel="icon" type="image/svg+xml" href="https://pbs.twimg.com/media/HDlLbCPbEAEc4do?format=png&name=small" />
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts Inter & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="icon" type="image/svg+xml" href="https://pbs.twimg.com/media/HDlLbCPbEAEc4do?format=png&name=small" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     
@@ -41,13 +41,13 @@
     <style>
         /* Custom Glassmorphism & Effects */
         .glass-panel {
-            background: rgba(17, 24, 39, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
         .light .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.9);
             border: 1px solid rgba(0, 0, 0, 0.08);
         }
         .gradient-text {
@@ -70,7 +70,7 @@
                 background: #ffffff !important;
                 color: #000000 !important;
             }
-            header, footer, #viewSwitchContainer, .no-print {
+            header, footer, #viewSwitchContainer, .no-print, #mobileMenu {
                 display: none !important;
             }
             #portfolioView {
@@ -96,42 +96,97 @@
 </head>
 <body class="bg-brand-dark light:bg-gray-50 text-slate-100 light:text-slate-800 font-sans transition-colors duration-300 min-h-screen flex flex-col selection:bg-cyan-500 selection:text-white">
 
-    <!-- Header Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-800/50 light:border-slate-200">
+    <!-- Responsive Fixed Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-800/80 light:border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
             <!-- Brand / Logo -->
-            <a href="#" class="flex items-center gap-3 group">
+            <a href="#about" onclick="switchView('portfolio')" class="flex items-center gap-3 group">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-emerald-400 flex items-center justify-center text-slate-950 font-bold font-heading text-xl shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
                     SA
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-heading font-bold text-lg leading-tight tracking-wide">Sudirman Ahadiat</span>
-                    <span class="text-xs text-cyan-400 font-medium">Islamic Finance & Tech</span>
+                    <span class="font-heading font-bold text-base sm:text-lg leading-tight tracking-wide">Sudirman Ahadiat</span>
+                    <span class="text-xs text-cyan-400 font-medium hidden sm:block">Islamic Finance & Tech</span>
                 </div>
             </a>
 
-            <!-- View Switcher Tabs (Desktop & Mobile Nav) -->
-            <div id="viewSwitchContainer" class="bg-slate-900/90 light:bg-slate-200/90 p-1 rounded-xl border border-slate-700/80 light:border-slate-300 flex items-center gap-1 shadow-inner">
-                <button id="btnPortfolioView" onclick="switchView('portfolio')" class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 shadow-md">
+            <!-- Desktop Navigation Links -->
+            <nav id="desktopNavLinks" class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300 light:text-slate-600">
+                <a href="#about" onclick="switchView('portfolio')" class="hover:text-cyan-400 transition-colors">About</a>
+                <a href="#skills" onclick="switchView('portfolio')" class="hover:text-cyan-400 transition-colors">Skills</a>
+                <a href="#experience" onclick="switchView('portfolio')" class="hover:text-cyan-400 transition-colors">Experience</a>
+                <a href="#education" onclick="switchView('portfolio')" class="hover:text-cyan-400 transition-colors">Education</a>
+            </nav>
+
+            <!-- Desktop View Switcher Controls -->
+            <div id="viewSwitchContainer" class="hidden md:flex bg-slate-900/90 light:bg-slate-200/90 p-1 rounded-xl border border-slate-700/80 light:border-slate-300 items-center gap-1 shadow-inner">
+                <button id="btnPortfolioView" onclick="switchView('portfolio')" class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 shadow-md">
                     <i class="fa-solid fa-laptop-code"></i>
-                    <span>Interactive Portfolio</span>
+                    <span>Portfolio</span>
                 </button>
-                <button id="btnCvView" onclick="switchView('cv')" class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-400 hover:text-white flex items-center gap-2">
+                <button id="btnCvView" onclick="switchView('cv')" class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-400 hover:text-white flex items-center gap-2">
                     <i class="fa-solid fa-file-invoice"></i>
-                    <span>Recruiter CV View</span>
+                    <span>Recruiter CV</span>
                 </button>
             </div>
 
-            <!-- Actions & Theme Toggle -->
-            <div class="flex items-center gap-3">
+            <!-- Right Controls: Theme Toggle & Mobile Hamburger Menu Button -->
+            <div class="flex items-center gap-2.5">
                 <!-- Theme Toggle Button -->
                 <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-800/80 light:bg-slate-200 text-slate-300 light:text-slate-700 hover:text-cyan-400 transition-all border border-slate-700 light:border-slate-300" title="Toggle Light/Dark Theme">
                     <i class="fa-solid fa-moon dark:hidden"></i>
                     <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
                 </button>
                 
-                <a href="https://wa.me/601121982971" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-emerald-500/30 text-xs font-semibold transition-all">
-                    <i class="fa-brands fa-whatsapp text-sm"></i> Direct Chat
+                <a href="https://wa.me/601121982971" target="_blank" class="hidden xl:inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-emerald-500/30 text-xs font-semibold transition-all">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+                </a>
+
+                <!-- Mobile Hamburger Menu Button -->
+                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" class="lg:hidden p-2.5 rounded-xl bg-slate-800/80 light:bg-slate-200 text-slate-300 light:text-slate-700 hover:text-cyan-400 transition-all border border-slate-700 light:border-slate-300">
+                    <i id="menuIcon" class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Slide-down / Dropdown Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-800/80 light:border-slate-200 bg-slate-950/95 light:bg-white/95 backdrop-blur-xl px-4 pt-4 pb-6 space-y-4 shadow-2xl transition-all duration-300">
+            <!-- Mobile View Switcher Buttons -->
+            <div class="bg-slate-900 light:bg-slate-100 p-1.5 rounded-xl border border-slate-800 light:border-slate-300 flex items-center justify-between gap-1">
+                <button id="mobileBtnPortfolio" onclick="switchView('portfolio')" class="flex-1 py-2 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 shadow">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <span>Portfolio</span>
+                </button>
+                <button id="mobileBtnCv" onclick="switchView('cv')" class="flex-1 py-2 rounded-lg text-xs font-semibold transition-all text-slate-400 light:text-slate-600 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <span>Recruiter CV</span>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Links -->
+            <div id="mobileNavLinks" class="flex flex-col space-y-2 pt-2 border-t border-slate-800/50 light:border-slate-200">
+                <a href="#about" onclick="handleMobileNavClick('portfolio')" class="px-3 py-2.5 rounded-lg text-slate-300 light:text-slate-700 hover:bg-slate-800/50 light:hover:bg-slate-100 text-sm font-medium flex items-center gap-3">
+                    <i class="fa-solid fa-user text-cyan-400 w-4"></i> About Me
+                </a>
+                <a href="#skills" onclick="handleMobileNavClick('portfolio')" class="px-3 py-2.5 rounded-lg text-slate-300 light:text-slate-700 hover:bg-slate-800/50 light:hover:bg-slate-100 text-sm font-medium flex items-center gap-3">
+                    <i class="fa-solid fa-code text-cyan-400 w-4"></i> Technical Skills
+                </a>
+                <a href="#experience" onclick="handleMobileNavClick('portfolio')" class="px-3 py-2.5 rounded-lg text-slate-300 light:text-slate-700 hover:bg-slate-800/50 light:hover:bg-slate-100 text-sm font-medium flex items-center gap-3">
+                    <i class="fa-solid fa-briefcase text-cyan-400 w-4"></i> Experience
+                </a>
+                <a href="#education" onclick="handleMobileNavClick('portfolio')" class="px-3 py-2.5 rounded-lg text-slate-300 light:text-slate-700 hover:bg-slate-800/50 light:hover:bg-slate-100 text-sm font-medium flex items-center gap-3">
+                    <i class="fa-solid fa-graduation-cap text-cyan-400 w-4"></i> Education
+                </a>
+            </div>
+
+            <!-- Mobile Actions -->
+            <div class="pt-2 flex flex-col gap-2">
+                <button onclick="window.print()" class="w-full py-2.5 rounded-xl bg-slate-800 light:bg-slate-200 text-slate-200 light:text-slate-800 text-xs font-semibold flex items-center justify-center gap-2 border border-slate-700 light:border-slate-300">
+                    <i class="fa-solid fa-print text-cyan-400"></i> Print / Download CV PDF
+                </button>
+                <a href="https://wa.me/601121982971" target="_blank" class="w-full py-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 text-xs font-semibold flex items-center justify-center gap-2 border border-emerald-500/30">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp Contact
                 </a>
             </div>
         </div>
@@ -145,7 +200,7 @@
         <!-- ========================================================= -->
         <div id="portfolioView" class="transition-opacity duration-300">
             <!-- Hero Section -->
-            <section id="about" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 flex flex-col md:flex-row items-center justify-between gap-12">
+            <section id="about" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
                 <!-- Background Decorative Glows -->
                 <div class="absolute top-1/4 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
                 <div class="absolute bottom-10 right-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
@@ -157,15 +212,15 @@
                         Open for Finance Tech & Mobile Dev Opportunities
                     </div>
                     
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight leading-tight">
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight leading-tight">
                         Hi, I'm <span class="gradient-text">Sudirman Ahadiat</span>
                     </h1>
                     
-                    <p class="text-lg sm:text-xl font-heading text-slate-300 light:text-slate-600 font-medium">
-                        Financial Analyst & Tech Developer
+                    <p class="text-base sm:text-xl font-heading text-slate-300 light:text-slate-600 font-medium">
+                        Financial Analyst & Full-Stack Developer
                     </p>
 
-                    <p class="text-slate-400 light:text-slate-600 leading-relaxed text-base max-w-2xl">
+                    <p class="text-slate-400 light:text-slate-600 leading-relaxed text-sm sm:text-base max-w-2xl">
                         I’m an Islamic Finance student with a developer’s mindset, passionate about turning ideas into real-world solutions! 🚀 I build websites, Android applications, and AI-powered systems using Expo, APIs, and Supabase. Driven by innovation, problem-solving, and creating affordable technology that makes life easier.
                     </p>
 
@@ -186,11 +241,11 @@
                     </div>
 
                     <!-- Action CTA Buttons -->
-                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4">
-                        <button onclick="switchView('cv')" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold shadow-lg shadow-cyan-500/20 hover:scale-105 transition-all flex items-center gap-2">
-                            <i class="fa-solid fa-file-invoice"></i> Recruiter CV View
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-4 pt-4">
+                        <button onclick="switchView('cv')" class="px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-cyan-500/20 hover:scale-105 transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-file-invoice"></i> View Recruiter CV
                         </button>
-                        <a href="tel:01121982971" class="px-6 py-3 rounded-xl bg-slate-800/90 light:bg-slate-200 hover:bg-slate-700 text-slate-200 light:text-slate-800 font-semibold border border-slate-700/80 light:border-slate-300 hover:scale-105 transition-all flex items-center gap-2">
+                        <a href="tel:01121982971" class="px-5 py-3 rounded-xl bg-slate-800/90 light:bg-slate-200 hover:bg-slate-700 text-slate-200 light:text-slate-800 font-semibold text-xs sm:text-sm border border-slate-700/80 light:border-slate-300 hover:scale-105 transition-all flex items-center gap-2">
                             <i class="fa-solid fa-phone text-emerald-400"></i> 01121982971
                         </a>
                     </div>
@@ -198,22 +253,22 @@
                     <!-- Quick Location Info -->
                     <div class="pt-2 flex items-center justify-center md:justify-start gap-2 text-xs text-slate-400">
                         <i class="fa-solid fa-location-dot text-cyan-400"></i>
-                        <span>Terengganu, Malaysia</span>
+                        <span>Pondok Darul Fatihin, Kg. Sungai Durian, Guntong, Terengganu</span>
                     </div>
                 </div>
 
                 <!-- Right Profile Image Card -->
-                <div class="relative w-full max-w-sm md:max-w-md flex justify-center">
-                    <div class="relative group">
+                <div class="relative w-full max-w-xs sm:max-w-sm md:max-w-md flex justify-center">
+                    <div class="relative group w-full">
                         <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-emerald-500 to-purple-600 rounded-3xl blur-xl opacity-50 group-hover:opacity-80 transition duration-1000 group-hover:duration-200"></div>
                         <div class="relative bg-slate-900 light:bg-white p-3 rounded-3xl border border-slate-800 light:border-slate-200 shadow-2xl overflow-hidden">
                             <img 
-                                src='https://ahadiat.github.io/Portfolio/kling_20260407_%E4%BD%9C%E5%93%81_Image1Tran_4174_1.png' 
+                                src="https://ahadiat.github.io/Portfolio/kling_20260407_%E4%BD%9C%E5%93%81_Image1Tran_4174_1.png" 
                                 alt="Sudirman Ahadiat" 
                                 class="w-full h-auto rounded-2xl object-cover transform group-hover:scale-102 transition-transform duration-500"
                                 onerror="this.onerror=null; this.src='https://placehold.co/400x500/1e293b/06b6d4?text=Sudirman+Ahadiat';"
                             />
-                            <div class="absolute top-6 right-6 glass-panel px-3 py-1.5 rounded-xl border border-white/10 shadow-lg flex items-center gap-2 text-xs font-semibold text-emerald-400">
+                            <div class="absolute top-5 right-5 glass-panel px-3 py-1.5 rounded-xl border border-white/10 shadow-lg flex items-center gap-2 text-xs font-semibold text-emerald-400">
                                 <i class="fa-solid fa-check-circle"></i> Verified Profile
                             </div>
                         </div>
@@ -225,44 +280,54 @@
             <section id="skills" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div class="text-center max-w-3xl mx-auto mb-10">
                     <h2 class="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-1">Technical Stack</h2>
-                    <p class="text-3xl font-heading font-bold sm:text-4xl">Skills & Competencies</p>
+                    <p class="text-2xl sm:text-4xl font-heading font-bold">Skills & Competencies</p>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+                <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                    <div class="glass-panel p-5 sm:p-6 rounded-2xl border border-slate-800">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="font-bold">Supabase</span>
-                            <span class="text-emerald-400 text-sm">★★★☆☆</span>
+                            <span class="font-bold text-sm sm:text-base">Supabase</span>
+                            <span class="text-emerald-400 text-xs sm:text-sm">★★★☆☆</span>
                         </div>
                         <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                             <div class="bg-emerald-500 h-full" style="width: 60%"></div>
                         </div>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+                    <div class="glass-panel p-5 sm:p-6 rounded-2xl border border-slate-800">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="font-bold">React / React Native (Expo)</span>
-                            <span class="text-cyan-400 text-sm">★★★☆☆</span>
+                            <span class="font-bold text-sm sm:text-base">React / React Native (Expo)</span>
+                            <span class="text-cyan-400 text-xs sm:text-sm">★★★☆☆</span>
                         </div>
                         <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                             <div class="bg-cyan-500 h-full" style="width: 60%"></div>
                         </div>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+                    <div class="glass-panel p-5 sm:p-6 rounded-2xl border border-slate-800">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="font-bold">JavaScript</span>
-                            <span class="text-amber-400 text-sm">★★★☆☆</span>
+                            <span class="font-bold text-sm sm:text-base">JavaScript</span>
+                            <span class="text-amber-400 text-xs sm:text-sm">★★★☆☆</span>
                         </div>
                         <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                             <div class="bg-amber-400 h-full" style="width: 60%"></div>
                         </div>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+                    <div class="glass-panel p-5 sm:p-6 rounded-2xl border border-slate-800">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="font-bold">Microsoft Word / Office</span>
-                            <span class="text-blue-400 text-sm">★★★★☆</span>
+                            <span class="font-bold text-sm sm:text-base">PHP</span>
+                            <span class="text-purple-400 text-xs sm:text-sm">★★☆☆☆</span>
+                        </div>
+                        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-purple-400 h-full" style="width: 40%"></div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-5 sm:p-6 rounded-2xl border border-slate-800 sm:col-span-2">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold text-sm sm:text-base">Microsoft Word / Office</span>
+                            <span class="text-blue-400 text-xs sm:text-sm">★★★★☆</span>
                         </div>
                         <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                             <div class="bg-blue-400 h-full" style="width: 80%"></div>
@@ -273,46 +338,63 @@
 
             <!-- Experience Timeline Section -->
             <section id="experience" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                    <h2 class="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-1">Roles & Responsibilities</h2>
-                    <p class="text-3xl font-heading font-bold sm:text-4xl">Work Experience</p>
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-1">Career Journey</h2>
+                    <p class="text-2xl sm:text-4xl font-heading font-bold">Work Experience</p>
                 </div>
 
-                <div class="space-y-6">
-                    <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+                <div class="space-y-4 sm:space-y-6">
+                    <div class="glass-panel p-5 sm:p-6 rounded-2xl border border-slate-800">
                         <span class="text-xs font-semibold text-cyan-400">March 2026 – Present</span>
-                        <h3 class="text-xl font-bold mt-1">Mobile Application Developer</h3>
-                        <p class="text-sm text-emerald-400">University College Bestari, Kuala Terengganu</p>
-                        <p class="text-slate-300 light:text-slate-600 text-sm mt-2">Developing Android applications using Expo and integrating Supabase for database management, authentication, and backend services.</p>
+                        <h3 class="text-lg sm:text-xl font-bold mt-1">Mobile Application Developer</h3>
+                        <p class="text-xs sm:text-sm text-emerald-400">University College Bestari, Kuala Terengganu</p>
+                        <p class="text-slate-300 light:text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">Developing Android applications using Expo and integrating Supabase for database management, authentication, and backend services.</p>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+                    <div class="glass-panel p-5 sm:p-6 rounded-2xl border border-slate-800">
                         <span class="text-xs font-semibold text-purple-400">November 2025 – February 2026</span>
-                        <h3 class="text-xl font-bold mt-1">AI Integration Developer</h3>
-                        <p class="text-sm text-purple-400">Chaiyok, Kuala Terengganu</p>
-                        <p class="text-slate-300 light:text-slate-600 text-sm mt-2">Responsible for integrating AI models into websites through APIs to enhance website functionality and improve user experience.</p>
+                        <h3 class="text-lg sm:text-xl font-bold mt-1">AI Integration Developer</h3>
+                        <p class="text-xs sm:text-sm text-purple-400">Chaiyok, Kuala Terengganu</p>
+                        <p class="text-slate-300 light:text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">Responsible for integrating AI models into websites through APIs to enhance website functionality and improve user experience.</p>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+                    <div class="glass-panel p-5 sm:p-6 rounded-2xl border border-slate-800">
                         <span class="text-xs font-semibold text-emerald-400">August 2025 – Present</span>
-                        <h3 class="text-xl font-bold mt-1">Trainer</h3>
-                        <p class="text-sm text-emerald-400">ECOSWED INITIATIVE, Kuala Terengganu</p>
-                        <p class="text-slate-300 light:text-slate-600 text-sm mt-2">Leading clients on guided wetland walks, teaching about nature ecosystems and community sustainability, ensuring participant safety.</p>
+                        <h3 class="text-lg sm:text-xl font-bold mt-1">Trainer</h3>
+                        <p class="text-xs sm:text-sm text-emerald-400">ECOSWED INITIATIVE, Kuala Terengganu</p>
+                        <p class="text-slate-300 light:text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">Leading clients on guided wetland walks, teaching about nature ecosystems and community sustainability, ensuring participant safety.</p>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+                    <div class="glass-panel p-5 sm:p-6 rounded-2xl border border-slate-800">
                         <span class="text-xs font-semibold text-blue-400">April 2024 – October 2025</span>
-                        <h3 class="text-xl font-bold mt-1">Web Developer</h3>
-                        <p class="text-sm text-blue-400">Aqemny Venture, Kuala Terengganu</p>
-                        <p class="text-slate-300 light:text-slate-600 text-sm mt-2">Developed, maintained, and managed company websites to support the business's online presence.</p>
+                        <h3 class="text-lg sm:text-xl font-bold mt-1">Web Developer</h3>
+                        <p class="text-xs sm:text-sm text-blue-400">Aqemny Venture, Kuala Terengganu</p>
+                        <p class="text-slate-300 light:text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">Developed, maintained, and managed company websites to support the business's online presence.</p>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+                    <div class="glass-panel p-5 sm:p-6 rounded-2xl border border-slate-800">
                         <span class="text-xs font-semibold text-amber-400">July 2026 – Present</span>
-                        <h3 class="text-xl font-bold mt-1">Operations Assistant</h3>
-                        <p class="text-sm text-amber-400">Pizza Bakery Assistant</p>
-                        <p class="text-slate-300 light:text-slate-600 text-sm mt-2">Taking customer orders, serving food, assisting customers, and supporting daily operations for smooth service.</p>
+                        <h3 class="text-lg sm:text-xl font-bold mt-1">Operations Assistant</h3>
+                        <p class="text-xs sm:text-sm text-amber-400">Pizza Bakery Assistant</p>
+                        <p class="text-slate-300 light:text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">Taking customer orders, serving food, assisting customers, and supporting daily operations for smooth service.</p>
                     </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-1">Academic Background</h2>
+                    <p class="text-2xl sm:text-4xl font-heading font-bold">Education</p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+                    <span class="text-xs font-semibold text-cyan-400">March 2025 – October 2026</span>
+                    <h3 class="text-xl font-bold mt-1">Bachelor in Islamic Finance (Honours)</h3>
+                    <p class="text-sm text-emerald-400">University College Bestari, Kuala Terengganu</p>
+                    <p class="text-slate-300 light:text-slate-600 text-sm mt-3 leading-relaxed">
+                        Pursuing a Bachelor of Islamic Finance with Honours, learning various aspects of finance and how to apply them in accordance with Islamic principles and Shariah guidelines.
+                    </p>
                 </div>
             </section>
         </div>
@@ -320,39 +402,39 @@
 
         <!-- ========================================================= -->
         <!-- VIEW 2: RECRUITER CV VIEW (A4 CLASSIC DOCUMENT FORMAT)    -->
-        <!-- Matches the screenshot structure cleanly & print ready    -->
+        <!-- Matches standard resume layout & print ready              -->
         <!-- ========================================================= -->
-        <div id="cvView" class="hidden max-w-4xl mx-auto px-4 sm:px-6 my-4 transition-opacity duration-300">
+        <div id="cvView" class="hidden max-w-4xl mx-auto px-3 sm:px-6 my-4 transition-opacity duration-300">
             <!-- Floating Print Control Toolbar (Screen only) -->
-            <div class="no-print flex items-center justify-between bg-slate-900 border border-slate-800 p-4 rounded-2xl mb-6 shadow-xl">
+            <div class="no-print flex flex-wrap items-center justify-between bg-slate-900 border border-slate-800 p-4 rounded-2xl mb-6 shadow-xl gap-3">
                 <div class="flex items-center gap-3">
                     <span class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
                     <div>
-                        <p class="text-xs font-bold text-slate-200">Recruiter A4 CV Format</p>
-                        <p class="text-[11px] text-slate-400">Optimized for quick scanning and clean PDF export.</p>
+                        <p class="text-xs font-bold text-slate-200">Recruiter A4 CV View</p>
+                        <p class="text-[11px] text-slate-400">Formatted for instant scanning and PDF print export.</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
-                    <button onclick="window.print()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold text-xs sm:text-sm hover:scale-105 transition-transform flex items-center gap-2 shadow-lg shadow-cyan-500/20">
-                        <i class="fa-solid fa-print text-sm"></i> Download PDF / Print CV
+                    <button onclick="window.print()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold text-xs sm:text-sm hover:scale-105 transition-transform flex items-center gap-2 shadow-lg shadow-cyan-500/20">
+                        <i class="fa-solid fa-print text-sm"></i> Print / Save PDF
                     </button>
                 </div>
             </div>
 
             <!-- CV Paper Container -->
-            <div class="cv-paper p-8 sm:p-14 rounded-lg border border-slate-200">
+            <div class="cv-paper p-6 sm:p-12 rounded-lg border border-slate-200">
                 
-                <!-- HEADER (Centered bold uppercase style matching screenshot) -->
+                <!-- HEADER (Centered bold style) -->
                 <header class="text-center pb-6 border-b-2 border-slate-800">
-                    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-widest text-black uppercase font-heading">
+                    <h1 class="text-2xl sm:text-4xl font-extrabold tracking-widest text-black uppercase font-heading">
                         SUDIRMAN AHADIAT
                     </h1>
-                    <p class="text-base sm:text-lg font-medium text-slate-700 mt-1 tracking-wide">
-                        Financial Analysis & Tech Developer
+                    <p class="text-xs sm:text-base font-semibold text-slate-700 mt-1 tracking-wide">
+                        Financial Analysis & Full-Stack Developer
                     </p>
 
                     <!-- Contact Details Bar -->
-                    <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mt-4 text-xs sm:text-sm font-medium text-slate-800">
+                    <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mt-4 text-xs font-medium text-slate-800">
                         <div class="flex items-center gap-1.5">
                             <i class="fa-solid fa-phone text-xs"></i>
                             <span>01121982971</span>
@@ -362,15 +444,15 @@
                             <span>Terengganu, Malaysia</span>
                         </div>
                         <div class="flex items-center gap-1.5">
-                            <i class="fa-solid fa-envelope text-xs"></i>
-                            <span>Pondok Darul Fatihin, Kg. Sg. Durian, Terengganu</span>
+                            <i class="fa-solid fa-house text-xs"></i>
+                            <span>Pondok Darul Fatihin, Kg. Sg. Durian</span>
                         </div>
                     </div>
                 </header>
 
                 <!-- SECTION 1: ABOUT ME -->
-                <section class="mt-8">
-                    <h2 class="text-sm font-bold uppercase tracking-wider text-black border-b border-slate-300 pb-1 mb-3">
+                <section class="mt-6 sm:mt-8">
+                    <h2 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-black border-b border-slate-300 pb-1 mb-3">
                         ABOUT ME
                     </h2>
                     <p class="text-xs sm:text-sm text-slate-700 leading-relaxed text-justify">
@@ -379,16 +461,16 @@
                 </section>
 
                 <!-- SECTION 2: EDUCATION -->
-                <section class="mt-8">
-                    <h2 class="text-sm font-bold uppercase tracking-wider text-black border-b border-slate-300 pb-1 mb-4">
+                <section class="mt-6 sm:mt-8">
+                    <h2 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-black border-b border-slate-300 pb-1 mb-4">
                         EDUCATION
                     </h2>
 
                     <div class="space-y-4">
                         <div>
-                            <div class="flex justify-between items-baseline">
+                            <div class="flex flex-col sm:flex-row justify-between sm:items-baseline">
                                 <span class="text-xs sm:text-sm font-bold text-black">University College Bestari | Kuala Terengganu</span>
-                                <span class="text-xs text-slate-600 font-semibold">March 2025 – October 2026</span>
+                                <span class="text-[11px] sm:text-xs text-slate-600 font-semibold">March 2025 – October 2026</span>
                             </div>
                             <p class="text-xs font-bold text-slate-800 mt-0.5">Bachelor in Islamic Finance (Honours)</p>
                             <p class="text-xs text-slate-600 mt-1 leading-relaxed">
@@ -399,17 +481,17 @@
                 </section>
 
                 <!-- SECTION 3: WORK EXPERIENCE -->
-                <section class="mt-8">
-                    <h2 class="text-sm font-bold uppercase tracking-wider text-black border-b border-slate-300 pb-1 mb-4">
+                <section class="mt-6 sm:mt-8">
+                    <h2 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-black border-b border-slate-300 pb-1 mb-4">
                         WORK EXPERIENCE
                     </h2>
 
                     <div class="space-y-5">
                         <!-- Experience 1 -->
                         <div>
-                            <div class="flex justify-between items-baseline">
+                            <div class="flex flex-col sm:flex-row justify-between sm:items-baseline">
                                 <span class="text-xs sm:text-sm font-bold text-black">University College Bestari | Kuala Terengganu</span>
-                                <span class="text-xs text-slate-600 font-semibold">March 2026 – Present</span>
+                                <span class="text-[11px] sm:text-xs text-slate-600 font-semibold">March 2026 – Present</span>
                             </div>
                             <p class="text-xs font-bold text-slate-800 mt-0.5">Mobile Application Developer</p>
                             <p class="text-xs text-slate-600 mt-1 leading-relaxed">
@@ -419,9 +501,9 @@
 
                         <!-- Experience 2 -->
                         <div>
-                            <div class="flex justify-between items-baseline">
+                            <div class="flex flex-col sm:flex-row justify-between sm:items-baseline">
                                 <span class="text-xs sm:text-sm font-bold text-black">Chaiyok | Kuala Terengganu</span>
-                                <span class="text-xs text-slate-600 font-semibold">November 2025 – February 2026</span>
+                                <span class="text-[11px] sm:text-xs text-slate-600 font-semibold">November 2025 – February 2026</span>
                             </div>
                             <p class="text-xs font-bold text-slate-800 mt-0.5">AI Integration Developer</p>
                             <p class="text-xs text-slate-600 mt-1 leading-relaxed">
@@ -431,9 +513,9 @@
 
                         <!-- Experience 3 -->
                         <div>
-                            <div class="flex justify-between items-baseline">
+                            <div class="flex flex-col sm:flex-row justify-between sm:items-baseline">
                                 <span class="text-xs sm:text-sm font-bold text-black">ECOSWED INITIATIVE | Kuala Terengganu</span>
-                                <span class="text-xs text-slate-600 font-semibold">August 2025 – Present</span>
+                                <span class="text-[11px] sm:text-xs text-slate-600 font-semibold">August 2025 – Present</span>
                             </div>
                             <p class="text-xs font-bold text-slate-800 mt-0.5">Trainer</p>
                             <p class="text-xs text-slate-600 mt-1 leading-relaxed">
@@ -443,9 +525,9 @@
 
                         <!-- Experience 4 -->
                         <div>
-                            <div class="flex justify-between items-baseline">
+                            <div class="flex flex-col sm:flex-row justify-between sm:items-baseline">
                                 <span class="text-xs sm:text-sm font-bold text-black">Aqemny Venture | Kuala Terengganu</span>
-                                <span class="text-xs text-slate-600 font-semibold">April 2024 – October 2025</span>
+                                <span class="text-[11px] sm:text-xs text-slate-600 font-semibold">April 2024 – October 2025</span>
                             </div>
                             <p class="text-xs font-bold text-slate-800 mt-0.5">Web Developer</p>
                             <p class="text-xs text-slate-600 mt-1 leading-relaxed">
@@ -455,9 +537,9 @@
 
                         <!-- Experience 5 -->
                         <div>
-                            <div class="flex justify-between items-baseline">
+                            <div class="flex flex-col sm:flex-row justify-between sm:items-baseline">
                                 <span class="text-xs sm:text-sm font-bold text-black">Pizza Bakery</span>
-                                <span class="text-xs text-slate-600 font-semibold">July 2026 – Present</span>
+                                <span class="text-[11px] sm:text-xs text-slate-600 font-semibold">July 2026 – Present</span>
                             </div>
                             <p class="text-xs font-bold text-slate-800 mt-0.5">Assistant</p>
                             <p class="text-xs text-slate-600 mt-1 leading-relaxed">
@@ -468,18 +550,18 @@
                 </section>
 
                 <!-- SECTION 4: SKILLS -->
-                <section class="mt-8">
-                    <h2 class="text-sm font-bold uppercase tracking-wider text-black border-b border-slate-300 pb-1 mb-3">
+                <section class="mt-6 sm:mt-8">
+                    <h2 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-black border-b border-slate-300 pb-1 mb-3">
                         SKILLS
                     </h2>
 
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-2 text-xs text-slate-800 font-medium">
-                        <div class="flex items-center gap-1.5">• Supabase (Backend & Auth)</div>
-                        <div class="flex items-center gap-1.5">• React & React Native (Expo)</div>
-                        <div class="flex items-center gap-1.5">• JavaScript (ES6+)</div>
-                        <div class="flex items-center gap-1.5">• PHP</div>
-                        <div class="flex items-center gap-1.5">• Microsoft Word / Office Suite</div>
-                        <div class="flex items-center gap-1.5">• Shariah Financial Analysis</div>
+                        <div>• Supabase (Backend & Auth)</div>
+                        <div>• React & React Native (Expo)</div>
+                        <div>• JavaScript (ES6+)</div>
+                        <div>• PHP</div>
+                        <div>• Microsoft Word / Office</div>
+                        <div>• Shariah Financial Analysis</div>
                     </div>
                 </section>
 
@@ -495,33 +577,83 @@
             <div class="flex gap-4 text-xs text-slate-400">
                 <span>Islamic Finance Analyst</span>
                 <span>•</span>
-                <span>Android & Web Developer</span>
+                <span>Mobile & Web Developer</span>
             </div>
         </div>
     </footer>
 
-    <!-- View Switching Logic -->
+    <!-- Interactive Scripts -->
     <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = document.getElementById('menuIcon');
+            
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            }
+        }
+
+        // Close Mobile Menu automatically after link selection
+        function handleMobileNavClick(viewName) {
+            switchView(viewName);
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = document.getElementById('menuIcon');
+            mobileMenu.classList.add('hidden');
+            menuIcon.classList.remove('fa-xmark');
+            menuIcon.classList.add('fa-bars');
+        }
+
+        // View Switching Logic (Portfolio Mode vs Recruiter CV Mode)
         function switchView(viewName) {
             const portfolioView = document.getElementById('portfolioView');
             const cvView = document.getElementById('cvView');
+            
+            // Desktop buttons
             const btnPortfolio = document.getElementById('btnPortfolioView');
             const btnCv = document.getElementById('btnCvView');
+
+            // Mobile buttons
+            const mobileBtnPortfolio = document.getElementById('mobileBtnPortfolio');
+            const mobileBtnCv = document.getElementById('mobileBtnCv');
+
+            const activeClass = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 shadow-md";
+            const inactiveClass = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-400 hover:text-white flex items-center gap-2";
+
+            const mobileActiveClass = "flex-1 py-2 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 shadow";
+            const mobileInactiveClass = "flex-1 py-2 rounded-lg text-xs font-semibold transition-all text-slate-400 light:text-slate-600 flex items-center justify-center gap-2";
 
             if (viewName === 'portfolio') {
                 portfolioView.classList.remove('hidden');
                 cvView.classList.add('hidden');
 
-                // Button Styling Active Portfolio
-                btnPortfolio.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 shadow-md";
-                btnCv.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-400 hover:text-white flex items-center gap-2";
+                if (btnPortfolio && btnCv) {
+                    btnPortfolio.className = activeClass;
+                    btnCv.className = inactiveClass;
+                }
+                if (mobileBtnPortfolio && mobileBtnCv) {
+                    mobileBtnPortfolio.className = mobileActiveClass;
+                    mobileBtnCv.className = mobileInactiveClass;
+                }
             } else {
                 portfolioView.classList.add('hidden');
                 cvView.classList.remove('hidden');
 
-                // Button Styling Active CV
-                btnCv.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 shadow-md";
-                btnPortfolio.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-400 hover:text-white flex items-center gap-2";
+                if (btnPortfolio && btnCv) {
+                    btnCv.className = activeClass;
+                    btnPortfolio.className = inactiveClass;
+                }
+                if (mobileBtnPortfolio && mobileBtnCv) {
+                    mobileBtnCv.className = mobileActiveClass;
+                    mobileBtnPortfolio.className = mobileInactiveClass;
+                }
                 
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
